@@ -13,6 +13,9 @@ public class Lot
     private String description;
     // The current highest bid for this lot.
     private Bid highestBid;
+    //persona que ha hecho la puja mas alta
+   
+   
 
     /**
      * Construct a Lot, setting its number and description.
@@ -91,4 +94,5 @@ public class Lot
     {
         return highestBid;
     }
+    
 }

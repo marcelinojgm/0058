@@ -57,7 +57,7 @@ public class Auction
     {
         Lot selectedLot = getLot(lotNumber);
         if(selectedLot != null) {
-            boolean successful =selectedLot.bidFor(new Bid(bidder, value));
+            boolean successful = selectedLot.bidFor(new Bid(bidder, value));
             if(successful) {
                 System.out.println("The bid for lot number " +
                     lotNumber + " was successful.");
@@ -65,9 +65,9 @@ public class Auction
             else {
                 // Report which bid is higher.
                 System.out.println("Lot number: " + 
-                                   lotNumber +
-                                   " already has a bid of: " +
-                                   selectedLot.getHighestBid().getValue());
+                    lotNumber +
+                    " already has a bid of: " +
+                    selectedLot.getHighestBid().getValue());
             }
         }
     }
@@ -100,4 +100,22 @@ public class Auction
             return null;
         }
     }
+
+    /**
+     * mostra los detalles de todos los items que se estén subastando
+     */
+    public void close()
+    {
+        int cont = 0; 
+        for (Lot lot : lots)
+        {
+
+            System.out.println(lot.toString());
+            if(lot.getHighestBid() != null)
+            {
+                System.out.println("Bidder: " + lot.getHighestBid().getBidder().getName());
+            }
+        }
+    }
 }
+
