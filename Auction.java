@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+
 
 /**
  * A simple model of an auction.
@@ -72,41 +74,15 @@ public class Auction
         }
     }
 
-    /**
-     * Return the lot with the given number. Return null
-     * if a lot with this number does not exist.
-     * @param lotNumber The number of the lot to return.
-     */
-    public Lot getLot(int lotNumber)
-    {
-        if((lotNumber >= 1) && (lotNumber < nextLotNumber)) {
-            // The number seems to be reasonable.
-            Lot selectedLot = lots.get(lotNumber - 1);
-            // Include a confidence check to be sure we have the
-            // right lot.
-            if(selectedLot.getNumber() != lotNumber) {
-                System.out.println("Internal error: Lot number " +
-                    selectedLot.getNumber() +
-                    " was returned instead of " +
-                    lotNumber);
-                // Don't return an invalid lot.
-                selectedLot = null;
-            }
-            return selectedLot;
-        }
-        else {
-            System.out.println("Lot number: " + lotNumber +
-                " does not exist.");
-            return null;
-        }
-    }
+   
 
     /**
      * mostra los detalles de todos los items que se estén subastando
      */
+
     public void close()
     {
-        int cont = 0; 
+
         for (Lot lot : lots)
         {
 
@@ -117,5 +93,27 @@ public class Auction
             }
         }
     }
-}
 
+    /**
+     * devuelva una colección de todos los items 
+     * por los que no habido ninguna puja en este momento y no imprima nada por pantalla.
+     */
+    public ArrayList getUnsold()
+    {
+        ArrayList<Lot> noBidLot = new ArrayList<>();
+        for (Lot lot : lots)
+        {
+            if(lot.getHighestBid() == null) 
+            {
+                noBidLot.add(lot);
+            }
+        }
+        return noBidLot;
+    }
+
+    public void removeLot(int idNumber)
+    {
+
+    }
+
+}
