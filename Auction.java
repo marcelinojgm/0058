@@ -74,7 +74,38 @@ public class Auction
         }
     }
 
-   
+    /**
+     * Return the lot with the given number. Return null
+     * if a lot with this number does not exist.
+     * @param lotNumber The number of the lot to return.
+     */
+    public Lot getLot(int lotNumber)
+    {
+        Lot getLot = null; 
+        if((lotNumber >= 1) && (lotNumber < nextLotNumber)) {
+            
+            boolean exist = false;
+            //comprobacion si existe elemnto con ese lotNumber
+            Iterator<Lot> itLots = lots.iterator(); 
+            while(itLots.hasNext() && !exist )
+            {
+                Lot lot = itLots.next();
+                if(itLots.next().getNumber() == lotNumber )
+                {
+                    getLot = lot;
+                    exist = true;
+                }
+
+            }
+            
+            if(exist)
+            {
+                System.out.println("Lot number: " + lotNumber +
+                    " does not exist.");
+            }
+        }
+        return getLot;
+    }
 
     /**
      * mostra los detalles de todos los items que se estén subastando
